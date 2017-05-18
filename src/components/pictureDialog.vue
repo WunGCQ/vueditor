@@ -17,8 +17,8 @@
       </div>
       <div class="dialog-footer">
         <div class="ve-btn-box">
-          <button class="ve-btn" @click="hideDialog">{{lang.cancel}}</button>
-          <button class="ve-btn" @click="certainHandler">{{lang.ok}}</button>
+          <button class="ve-btn" type="button" @click="hideDialog">{{lang.cancel}}</button>
+          <button class="ve-btn" type="button" @click="certainHandler">{{lang.ok}}</button>
         </div>
       </div>
     </div>
@@ -64,6 +64,7 @@
             let formData = new FormData(form);
             let xhr = new XMLHttpRequest();
             xhr.open('POST', fileuploadUrl);
+            xhr.withCredentials = true;
             xhr.send(formData);
             xhr.onload = function () {
               this.$store.dispatch('execCommand', {name: 'insertHTML', value: `<img src="${xhr.responseText}">`});
